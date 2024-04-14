@@ -6,15 +6,15 @@ const { Schema, model } = require("mongoose");
 //LockReport model
 
 const ProductSchema = Schema({
-  nombre: {
+  name: {
     type: String,
     required: true,
   },
-   cantidad: {
+   quantity: {
     type: Number,
     required: true,
   },
-   precio: {
+   price: {
     type: Number,
     required: true,
    },
@@ -22,4 +22,4 @@ const ProductSchema = Schema({
 
 //Models exportation
 
-module.exports = model('Producto', ProductSchema) 
+module.exports = model('Product', ProductSchema) 
