@@ -33,14 +33,17 @@ const Header = () => {
   const [productName, setproductName] = useState('');
   const [productPrice, setproductPrice] = useState('');
   const [productQuantity, setproductQuantity] = useState('');
+  const [productImage, setproductImage] = useState('');
 
   /* Esta funcion enviara la informacion del nuevo producto al backend */
   
   const SendProduct = async () => {
     
     try {
-      const response = await axios.post('/api/products/productoLocal', { productName, productPrice, productQuantity });
+      console.log('Primera linea de sendproduct!!');
       console.log(response.data); // Mensaje de exito del backend
+      alert(`Se acciono SendProduct!`);
+      const response = await axios.post('/api/products/productoLocal', { productName, productPrice, productQuantity, productImage });
     } catch (error) {
       console.error('Error:', error);
     }
@@ -61,6 +64,7 @@ const Header = () => {
         </Button>
 
         <Dialog open={open} size="xl" handler={handleOpen}>
+        <form onSubmit={SendProduct}>
         <div className="flex items-center justify-between">
           <DialogHeader className="flex flex-col items-start">
             <Typography className="mb-1" variant="h4">
@@ -69,14 +73,18 @@ const Header = () => {
           </DialogHeader>
           
         </div>
-        
+
         <DialogBody className='flex justify-center items-center' style={{ height: '320px' }}>
           
+         
+
           <div className="w-1/2 grid gap-2">
             
           <Typography className="mb-1 absolute top-0" variant="h4">
              Añadir imagen
             </Typography>
+
+            
             <input className="mb-2 mt-6 absolute bottom-0 justify-center items-center" type="file" onChange={handleChange} />
             {file && <img 
             src={file} 
@@ -93,27 +101,32 @@ const Header = () => {
             </Typography>
 
             
-            <Input style={{width: '300px'}} label="Nombre" value={productName}/>  {/* esta mal usar "value", traba el input. Correjir */}
-            <Input style={{width: '300px'}} label="Precio" value={productPrice}/>
-            <Input style={{width: '300px'}} label="Cantidad" value={productQuantity}/>
+            <Input style={{width: '300px'}} label="Nombre" value={productName} onChange={(e) => setproductName(e.target.value)}/>  {/* esta mal usar "value", traba el input. Correjir */}
+            <Input style={{width: '300px'}} label="Precio" value={productPrice}onChange={(e) => setproductPrice(e.target.value)}/>
+            <Input style={{width: '300px'}} label="Cantidad" value={productQuantity}onChange={(e) => setproductQuantity(e.target.value)}/>
+            
             
           </div>
+         
         </DialogBody>
 
         <DialogFooter className="space-x-2">
           <Button variant="text" color="gray" onClick={handleOpen}>
            Cancelar
           </Button>
-          <Button variant="gradient" color="gray" onClick={handleOpen && SendProduct}>
+          <Button variant="gradient" color="gray" onClick={handleOpen} >
             Añadir producto
           </Button>
+          
+          
         </DialogFooter>
-
+        </form>
       </Dialog>
 
 
       </div>
     </div>
+    
   );
 };
 
