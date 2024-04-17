@@ -3,7 +3,7 @@
 const http = require('http');
 
 const express = require('express');
-const mongoose = require('mongoose');
+const cors = require('cors');
 const morgan = require('morgan');
 const {ConnectDB} = require('./database/config')
 
@@ -18,6 +18,7 @@ const server = http.createServer(app) //Crear server
 
 // Middlewares
 
+app.use(cors());
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended:false})); // ver si esto es compatible o no
 app.use(express.json());

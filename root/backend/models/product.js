@@ -18,10 +18,10 @@ const ProductSchema = Schema({
     type: Number,
     required: true,
    },
-   imageUrl: {
+   /*imageUrl: {
     type: String,
     required: true,
-  },
+  },*/
    
 });
 

@@ -1,8 +1,4 @@
-// cuando se suben bien los datos, meter una animacion de alerta de las que salen del costado abajo a la izquierda informando si se pudo subir o no
-
-'use client'
-
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Button,
   Dialog,
@@ -12,42 +8,41 @@ import {
   Input,
   Typography,
 } from "@material-tailwind/react";
-import { useState } from 'react';
 import axios from 'axios';
 
 const Header = () => {
-  
-  const [open, setOpen] = React.useState(false);
- 
+  const [open, setOpen] = useState(false);
+  const [productName, setProductName] = useState('');
+  const [productPrice, setProductPrice] = useState('');
+  const [productQuantity, setProductQuantity] = useState('');
+  // const [file, setFile] = useState(null);
+
   const handleOpen = () => setOpen(!open);
 
-  /* Estas constantes son usadas para poder buscar y subir la imagen guardada localmente */
-  const [file, setFile] = useState();
-
   const handleChange = (e) => {
-    setFile(URL.createObjectURL(e.target.files[0]));
+    setFile(e.target.files[0]);
   };
 
-  /* Esta es la informacion del producto que voy a recibir */
-
-  const [productName, setproductName] = useState('');
-  const [productPrice, setproductPrice] = useState('');
-  const [productQuantity, setproductQuantity] = useState('');
-  const [productImage, setproductImage] = useState('');
-
-  /* Esta funcion enviara la informacion del nuevo producto al backend */
-  
   const SendProduct = async () => {
-    
-    try {
-      console.log('Primera linea de sendproduct!!');
-      console.log(response.data); // Mensaje de exito del backend
-      alert(`Se acciono SendProduct!`);
-      const response = await axios.post('/api/products/productoLocal', { productName, productPrice, productQuantity, productImage });
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
+  try {
+    const requestData = {
+      productName: productName,
+      productPrice: productPrice,
+      productQuantity: productQuantity
+    };
+
+    console.log('productName:', productName);
+    console.log('productPrice:', productPrice);
+    console.log('productQuantity:', productQuantity);
+
+    const response = await axios.post('http://localhost:3000/api/products/productoLocal', requestData);
+    console.log(response.data);
+    alert(`Producto añadido correctamente!`);
+  } catch (error) {
+    console.error('Error:', error);
+    alert(`Error al añadir el producto: ${error.message}`);
+  }
+};
 
 
   return (
@@ -59,74 +54,49 @@ const Header = () => {
         <h1 className='text-5xl ml-10 mb-10 mt-10'>Inventario</h1>
       </div>
       <div className="flex justify-center">
-        <Button style={{ borderColor: '#ff0000' }} onClick={() => handleOpen()}>
+        <Button style={{ borderColor: '#ff0000' }} onClick={handleOpen}>
           Añadir producto
         </Button>
 
         <Dialog open={open} size="xl" handler={handleOpen}>
-        <form onSubmit={SendProduct}>
-        <div className="flex items-center justify-between">
-          <DialogHeader className="flex flex-col items-start">
-            <Typography className="mb-1" variant="h4">
-             Ingrese los datos del nuevo producto
-            </Typography>
-          </DialogHeader>
-          
-        </div>
-
-        <DialogBody className='flex justify-center items-center' style={{ height: '320px' }}>
-          
-         
-
-          <div className="w-1/2 grid gap-2">
-            
-          <Typography className="mb-1 absolute top-0" variant="h4">
-             Añadir imagen
-            </Typography>
-
-            
-            <input className="mb-2 mt-6 absolute bottom-0 justify-center items-center" type="file" onChange={handleChange} />
-            {file && <img 
-            src={file} 
-            className='block mx-auto my-auto mb-4' 
-            alt="Imagen a subir" 
-            style={{width: '200px', height: '200px' }} />}
-            
+          <div className="flex items-center justify-between">
+            <DialogHeader className="flex flex-col items-start">
+              <Typography className="mb-1" variant="h4">
+                Ingrese los datos del nuevo producto
+              </Typography>
+            </DialogHeader>
           </div>
 
-          <div className="w-1/2 grid gap-7 justify-center items-center mb-2">
-            
-          <Typography className="mb-1 top-0 absolute" variant="h4">
-             Añadir caracteristicas
-            </Typography>
+          <DialogBody className='flex justify-center items-center' style={{ height: '320px' }}>
+            <div className="w-1/2 grid gap-2">
+              <Typography className="mb-1 absolute top-0" variant="h4">
+                Añadir imagen
+              </Typography>
+             {/* <input className="mb-2 mt-6 absolute bottom-0 justify-center items-center" type="file" onChange={handleChange} />
+              {file && <img src={URL.createObjectURL(file)} className='block mx-auto my-auto mb-4' alt="Imagen a subir" style={{width: '200px', height: '200px' }} />}   */}
+            </div>
 
-            
-            <Input style={{width: '300px'}} label="Nombre" value={productName} onChange={(e) => setproductName(e.target.value)}/>  {/* esta mal usar "value", traba el input. Correjir */}
-            <Input style={{width: '300px'}} label="Precio" value={productPrice}onChange={(e) => setproductPrice(e.target.value)}/>
-            <Input style={{width: '300px'}} label="Cantidad" value={productQuantity}onChange={(e) => setproductQuantity(e.target.value)}/>
-            
-            
-          </div>
-         
-        </DialogBody>
+            <div className="w-1/2 grid gap-7 justify-center items-center mb-2">
+              <Typography className="mb-1 top-0 absolute" variant="h4">
+                Añadir características
+              </Typography>
+              <Input style={{width: '300px'}} label="Nombre" value={productName} onChange={(e) => setProductName(e.target.value)}/>
+              <Input style={{width: '300px'}} label="Precio" value={productPrice} onChange={(e) => setProductPrice(e.target.value)}/>
+              <Input style={{width: '300px'}} label="Cantidad" value={productQuantity} onChange={(e) => setProductQuantity(e.target.value)}/>
+            </div>
+          </DialogBody>
 
-        <DialogFooter className="space-x-2">
-          <Button variant="text" color="gray" onClick={handleOpen}>
-           Cancelar
-          </Button>
-          <Button variant="gradient" color="gray" onClick={handleOpen} >
-            Añadir producto
-          </Button>
-          
-          
-        </DialogFooter>
-        </form>
-      </Dialog>
-
-
+          <DialogFooter className="space-x-2">
+            <Button variant="text" color="gray" onClick={handleOpen}>
+              Cancelar
+            </Button>
+            <Button variant="gradient" color="gray" onClick={SendProduct}>
+              Añadir producto
+            </Button>
+          </DialogFooter>
+        </Dialog>
       </div>
     </div>
-    
   );
 };
 

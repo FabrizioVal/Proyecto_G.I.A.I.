@@ -6,8 +6,8 @@ const LocalProduct = async (req, res) => {
 
   const { productName, productPrice, productQuantity } = req.body;
   try {
-    const newProduct = new product({ name: productName, quantity: productQuantity, price: productPrice });
-    await newProduct.save();
+    const newProduct = new product({ name: productName, quantity: productQuantity, price: productPrice,  });
+    await newProduct.save(); //muere aca, salta al error al no recibir los datos, pero si ser accionado
     console.log('Producto añadido');
     res.status(200).send({ message: 'Producto añadido exitosamente' });
   } catch (error) {
