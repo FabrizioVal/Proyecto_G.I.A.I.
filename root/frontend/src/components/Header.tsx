@@ -15,7 +15,7 @@ const Header = () => {
   const [productName, setProductName] = useState('');
   const [productPrice, setProductPrice] = useState('');
   const [productQuantity, setProductQuantity] = useState('');
-  // const [file, setFile] = useState(null);
+  const [file, setFile] = useState('');
 
   const handleOpen = () => setOpen(!open);
 
@@ -28,7 +28,8 @@ const Header = () => {
     const requestData = {
       productName: productName,
       productPrice: productPrice,
-      productQuantity: productQuantity
+      productQuantity: productQuantity,
+      file: file,
     };
 
     console.log('productName:', productName);
@@ -72,8 +73,8 @@ const Header = () => {
               <Typography className="mb-1 absolute top-0" variant="h4">
                 Añadir imagen
               </Typography>
-             {/* <input className="mb-2 mt-6 absolute bottom-0 justify-center items-center" type="file" onChange={handleChange} />
-              {file && <img src={URL.createObjectURL(file)} className='block mx-auto my-auto mb-4' alt="Imagen a subir" style={{width: '200px', height: '200px' }} />}   */}
+              <input className="mb-2 mt-6 absolute bottom-0 justify-center items-center" type="file" onChange={handleChange} />
+              {file && <img src={URL.createObjectURL(file)} className='block mx-auto my-auto mb-4' alt="Imagen a subir" style={{width: '200px', height: '200px' }} />}   
             </div>
 
             <div className="w-1/2 grid gap-7 justify-center items-center mb-2">
