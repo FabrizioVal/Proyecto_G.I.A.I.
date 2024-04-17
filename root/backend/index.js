@@ -1,7 +1,8 @@
 /* Aqui estara el archivo principal del servidor. Este archivo se correra cada vez que se levante el back-end */
 
+// Imports
+const bodyParser = require('body-parser');
 const http = require('http');
-
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
@@ -22,6 +23,10 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended:false})); // ver si esto es compatible o no
 app.use(express.json());
+
+// Esto es para los limites de tomaño de las imagenes enviadas al backend
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 // Routes
 

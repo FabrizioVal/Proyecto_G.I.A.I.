@@ -5,19 +5,6 @@ const LocalProduct = async (req, res) => {
 
   const { productName, productPrice, productQuantity, file } = req.body;
 
-  function convertToBase64(file){
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
-      fileReader.onload = () => {
-        resolve(fileReader.result)
-      };
-      fileReader.onerror = (error) => {
-        reject(error)
-      }
-    })
-  }
-
   try {
     const newProduct = new product({ name: productName, quantity: productQuantity, price: productPrice, imageUrl: file, });
     await newProduct.save(); //muere aca, salta al error al no recibir los datos, pero si ser accionado

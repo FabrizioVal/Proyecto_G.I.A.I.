@@ -25,11 +25,14 @@ const Header = () => {
 
   const SendProduct = async () => {
   try {
+
+    const base64Image = await convertToBase64(file);
+
     const requestData = {
       productName: productName,
       productPrice: productPrice,
       productQuantity: productQuantity,
-      file: file,
+      file: base64Image,
     };
 
     console.log('productName:', productName);
@@ -45,6 +48,19 @@ const Header = () => {
   }
 };
 
+
+function convertToBase64(file){
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = () => {
+      resolve(fileReader.result)
+    };
+    fileReader.onerror = (error) => {
+      reject(error)
+    }
+  })
+}
 
   return (
     <div>
@@ -71,9 +87,9 @@ const Header = () => {
           <DialogBody className='flex justify-center items-center' style={{ height: '320px' }}>
             <div className="w-1/2 grid gap-2">
               <Typography className="mb-1 absolute top-0" variant="h4">
-                Añadir imagen
+                Añadir imagen (Menor a 50mb)
               </Typography>
-              <input className="mb-2 mt-6 absolute bottom-0 justify-center items-center" type="file" onChange={handleChange} />
+              <input className="mb-2 mt-6 absolute bottom-0 justify-center items-center" type="file" onChange={handleChange}  accept='.jpeg, .png, .jpg'/>
               {file && <img src={URL.createObjectURL(file)} className='block mx-auto my-auto mb-4' alt="Imagen a subir" style={{width: '200px', height: '200px' }} />}   
             </div>
 
