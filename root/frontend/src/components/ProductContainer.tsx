@@ -9,9 +9,9 @@ import {
 } from "@material-tailwind/react";
 
 const ProductContainer = () => {
-  const name = "Sample Product";
-  const price = 20;
-  const quantity = 3;
+  const name = '';
+  const price = '';
+  const quantity = '';
 
   return (
     <div className="max-w-xs p-6"> {/* Apply max-w-xl class to limit the width */}

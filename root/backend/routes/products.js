@@ -8,4 +8,8 @@ const { LocalProduct } = require('../controllers/localProduct')
 
 router.post('/productoLocal', LocalProduct);
 
-/* */
+/* Funcion para hacer un constante display de todos los productos almacenados */
+
+const { getAllProducts } = require('../controllers/displayAllProducts') 
+
+router.post('/inventario', getAllProducts);

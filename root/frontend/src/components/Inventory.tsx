@@ -4,7 +4,7 @@ const Inventory = () => {
   return (
     <div>
         
-        <Product name="Product 1" price={10} quantity={5} />
+        <Product/>
         
     </div>
   )
