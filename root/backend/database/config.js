@@ -29,9 +29,8 @@ const ConnectDB = async () => {
 
 
 
-  const mongoURI = 'mongodb+srv://fabri:fabripassword@giaiweb.teni6je.mongodb.net/';
+  
 
   module.exports = {
     ConnectDB,
-    mongoURI,
   }
