@@ -23,8 +23,15 @@ const ConnectDB = async () => {
       throw new Error('Error connecting to DB')
   
     }
+
+    
   };
+
+
+
+  const mongoURI = 'mongodb+srv://fabri:fabripassword@giaiweb.teni6je.mongodb.net/';
 
   module.exports = {
     ConnectDB,
+    mongoURI,
   }

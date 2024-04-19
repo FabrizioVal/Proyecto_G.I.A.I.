@@ -12,4 +12,4 @@ router.post('/productoLocal', LocalProduct);
 
 const { getAllProducts } = require('../controllers/displayAllProducts') 
 
-router.post('/inventario', getAllProducts);
+router.get('/inventario', getAllProducts);

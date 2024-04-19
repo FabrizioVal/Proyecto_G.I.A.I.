@@ -82,7 +82,7 @@ function convertToBase64(file){
           <DialogBody className='flex justify-center items-center' style={{ height: '320px' }}>
             <div className="w-1/2 grid gap-2">
               <Typography className="mb-1 absolute top-0" variant="h4">
-                Añadir imagen (Menor a 50mb)
+                Añadir imagen (Menor a 2mb)
               </Typography>
               <input className="mb-2 mt-6 absolute bottom-0 justify-center items-center" type="file" onChange={handleChange}  accept='.jpeg, .png, .jpg'/>
               {file && <img src={URL.createObjectURL(file)} className='block mx-auto my-auto mb-4' alt="Imagen a subir" style={{width: '200px', height: '200px' }} />}   
