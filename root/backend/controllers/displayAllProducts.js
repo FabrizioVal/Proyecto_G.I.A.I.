@@ -48,15 +48,24 @@ module.exports = {
 // Retrieve MongoDB Atlas connection string from your config file
 //const { url } = require('../database/config'); // Assuming config file is in the same directory
 
-import db from "../db/connection.js";
-
 const getAllProducts = async (req, res) => {
     
-    console.log('I am in the first line of getAllProducts!!');
-  
-        let collection = await db.collection("products");
-        let results = await collection.find({}).toArray();
-        res.send(results).status(200);
+   
+        try {
+          
+          // Access the "records" collection and retrieve documents
+          const collection = db.collection("records");
+          const results = await collection.find({}).toArray();
+          
+          // Send the results as a response
+          res.send(results).status(200);
+        } catch (error) {
+          // Handle errors
+          console.error("Error fetching records:", error);
+          res.status(500).json({ error: "Internal Server Error" });
+        }
+
+    
       
 }
   

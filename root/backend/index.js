@@ -6,7 +6,6 @@ const http = require('http');
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
-const {ConnectDB} = require('./database/config')
 
 // Creacion del server de express
 
@@ -36,5 +35,5 @@ app.use('/api/products', require ('./routes/products'));
 
 server.listen(PORT, async () => {
   console.log(`Server is running on port ${PORT}`);
-  await ConnectDB();
+ 
 }); 

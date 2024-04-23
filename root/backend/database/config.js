@@ -1,36 +1,32 @@
-const mongoose = require('mongoose');
+const { MongoClient, ServerApiVersion } = require ('mongodb');
 
-// Conectar a MongoDB
+  const URI = 'mongodb+srv://fabri:fabripassword@giaiweb.teni6je.mongodb.net/';
+  const client = new MongoClient(URI, {
+    serverApi: {
+      version: ServerApiVersion.v1,
+      strict: true,
+      deprecationErrors: true,
+    },
+  });
 
-const ConnectDB = async () => {
+  console.log('db file')
 
-    mongoose.set('strictQuery', true);
-  
-    try {
-  
-      await mongoose.connect('mongodb+srv://fabri:fabripassword@giaiweb.teni6je.mongodb.net/')
-  
-  
-      // Si se conecto exitosamente
-  
-      console.log('DB online');
-  
-    } catch (error) {
-  
-      // Si no se conecto exitosamente
-  
-      console.log(error);
-      throw new Error('Error connecting to DB')
-  
-    }
+  try {
 
-    
-  };
+console.log('primera linea try config.js')
 
-
-
-  
-
-  module.exports = {
-    ConnectDB,
+    // Connect the client to the server
+    await client.connect();
+    // Send a ping to confirm a successful connection
+    await client.db("admin").command({ ping: 1 });
+    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+    return client.db("employees");
+  } catch (err) {
+    console.error(err);
   }
+
+
+let db = client.db("test");
+
+export default db;
+
