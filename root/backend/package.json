@@ -1,5 +1,5 @@
 {
-  
+  "type": "module",
   "scripts": {
     "dev": "nodemon index.js"
   },

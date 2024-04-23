@@ -48,7 +48,7 @@ module.exports = {
 // Retrieve MongoDB Atlas connection string from your config file
 //const { url } = require('../database/config'); // Assuming config file is in the same directory
 
-const getAllProducts = async (req, res) => {
+export const getAllProducts = async (req, res) => {
     
    
         try {
@@ -68,8 +68,6 @@ const getAllProducts = async (req, res) => {
     
       
 }
-  
-  module.exports = {
-    getAllProducts,
-  };
+
+  export default getAllProducts
   

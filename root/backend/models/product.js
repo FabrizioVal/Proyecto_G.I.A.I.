@@ -1,7 +1,7 @@
 
 // Define a schema and model
 
-const { Schema, model } = require("mongoose");
+import {Schema, model} from 'mongoose';
 
 //LockReport model
 
@@ -27,4 +27,4 @@ const ProductSchema = Schema({
 
 //Models exportation
 
-module.exports = model('Product', ProductSchema) 
+export default model('Product', ProductSchema) 

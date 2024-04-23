@@ -1,4 +1,6 @@
-const { MongoClient, ServerApiVersion } = require ('mongodb');
+import {MongoClient , ServerApiVersion} from 'mongodb';
+
+async function connectToMongoDB() {
 
   const URI = 'mongodb+srv://fabri:fabripassword@giaiweb.teni6je.mongodb.net/';
   const client = new MongoClient(URI, {
@@ -25,8 +27,11 @@ console.log('primera linea try config.js')
     console.error(err);
   }
 
+  let db = client.db("test");
 
-let db = client.db("test");
+}
 
-export default db;
+export default connectToMongoDB
+
+
 

@@ -1,15 +1,15 @@
-const express = require("express");
-const router = express.Router();
-module.exports = router; //Export the router instance
+import { Router } from "express";
+const router = Router();
+export default router; //Export the router instance
 
 /* Funcion para añadir producto de forma local */
 
-const { LocalProduct } = require('../controllers/localProduct') 
+import { LocalProduct } from '../controllers/localProduct.js'; 
 
 router.post('/productoLocal', LocalProduct);
 
 /* Funcion para hacer un constante display de todos los productos almacenados */
 
-const { getAllProducts } = require('../controllers/displayAllProducts') 
+import { getAllProducts } from '../controllers/displayAllProducts.js'; 
 
 router.get('/inventario', getAllProducts);

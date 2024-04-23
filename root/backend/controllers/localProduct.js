@@ -1,7 +1,7 @@
-const product = require('../models/product')
+import product from '../models/product.js';
 
 // API route to add a book
-const LocalProduct = async (req, res) => {
+export const LocalProduct = async (req, res) => {
 
   const { productName, productPrice, productQuantity, file } = req.body;
 
@@ -18,6 +18,6 @@ const LocalProduct = async (req, res) => {
 }
 
 //Exportacion de funciones
-module.exports = {
+export default {
     LocalProduct,
 }
