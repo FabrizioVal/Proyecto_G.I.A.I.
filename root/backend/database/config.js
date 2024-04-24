@@ -1,12 +1,17 @@
-import {MongoClient , ServerApiVersion} from 'mongodb';
+import {MongoClient} from 'mongodb';
+
+let db;
 
 async function connectToMongoDB() {
 
-  MongoClient.connect('mongodb://localhost:27017', (err, client) => {
+  /*
+  MongoClient.connect('mongodb+srv://fabri:fabripassword@giaiweb.teni6je.mongodb.net/', (err, client) => {
     // Client returned
-    var db = client.db('mytestingdb');
-  });
+    var db = client.db('test');
+  }); */
 
+  // ---- Este codigo es del tutorial MERN, borrar despues
+/*
   const URI = 'mongodb+srv://fabri:fabripassword@giaiweb.teni6je.mongodb.net/';
   const client = new MongoClient(URI, {
     serverApi: {
@@ -33,12 +38,27 @@ console.log('primera linea try config.js')
   }
 
   let db = client.db("test");
+*/
 
+
+
+
+    try {
+        const client = await MongoClient.connect('mongodb+srv://fabri:fabripassword@giaiweb.teni6je.mongodb.net/');
+        db = client.db('test');
+        console.log("Connected to MongoDB");
+    } catch (error) {
+        console.error("Error connecting to MongoDB:", error);
+        throw error; // Rethrow the error to be handled by the caller
+    }
 }
 
 
 
-export default connectToMongoDB 
+
+
+ 
+export { db, connectToMongoDB};
 
 
 

@@ -6,7 +6,9 @@ import { createServer } from 'http';
 import express, { urlencoded as _urlencoded, json as _json } from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
-import connectToMongoDB from './database/config.js';
+import {connectToMongoDB} from './database/config.js';
+
+
 
 // Creacion del server de express
 
@@ -41,6 +43,18 @@ app.use('/api/products', productsRouter);
 
 server.listen(PORT, async () => {
   console.log(`Server is running on port ${PORT}`);
-  await connectToMongoDB();
+ await connectToMongoDB();
 }); 
 
+/*
+connectToMongoDB()
+    .then(() => {
+        app.listen(PORT, () => {
+            console.log(`Server is running on port ${PORT}`);
+        });
+    })
+    .catch((error) => {
+        console.error('Failed to connect to MongoDB:', error);
+        process.exit(1); // Exit the process with failure status
+    });
+    */
