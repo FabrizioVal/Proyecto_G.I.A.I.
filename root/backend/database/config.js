@@ -2,6 +2,11 @@ import {MongoClient , ServerApiVersion} from 'mongodb';
 
 async function connectToMongoDB() {
 
+  MongoClient.connect('mongodb://localhost:27017', (err, client) => {
+    // Client returned
+    var db = client.db('mytestingdb');
+  });
+
   const URI = 'mongodb+srv://fabri:fabripassword@giaiweb.teni6je.mongodb.net/';
   const client = new MongoClient(URI, {
     serverApi: {
@@ -22,7 +27,7 @@ console.log('primera linea try config.js')
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
-    return client.db("employees");
+    return client.db("test");
   } catch (err) {
     console.error(err);
   }
@@ -31,7 +36,9 @@ console.log('primera linea try config.js')
 
 }
 
-export default connectToMongoDB
+
+
+export default connectToMongoDB 
 
 
 

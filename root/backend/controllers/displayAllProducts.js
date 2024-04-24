@@ -47,14 +47,17 @@ module.exports = {
 
 // Retrieve MongoDB Atlas connection string from your config file
 //const { url } = require('../database/config'); // Assuming config file is in the same directory
+import db from "../database/config.js";
+
 
 export const getAllProducts = async (req, res) => {
     
    
         try {
           
+          
           // Access the "records" collection and retrieve documents
-          const collection = db.collection("records");
+          const collection = db.collection("test");
           const results = await collection.find({}).toArray();
           
           // Send the results as a response
