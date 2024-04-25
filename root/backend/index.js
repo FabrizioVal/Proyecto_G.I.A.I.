@@ -1,7 +1,7 @@
 /* Aqui estara el archivo principal del servidor. Este archivo se correra cada vez que se levante el back-end */
 
 // Imports
-// import { json, urlencoded } from 'body-parser';
+
 import { createServer } from 'http';
 import express, { urlencoded as _urlencoded, json as _json } from 'express';
 import cors from 'cors';
@@ -26,13 +26,11 @@ app.use(morgan('dev'));
 app.use(_urlencoded({extended:false})); // ver si esto es compatible o no
 app.use(_json());
 
-// Esto es para los limites de tomaño de las imagenes enviadas al backend
+// Esto es para los limites de tomaño de las imagenes enviadas al backend (TODAVIA NO FUNCIONA)
 app.use(_json({ limit: '50mb' }));
 app.use(_urlencoded({ limit: '50mb', extended: true }));
 
 // Routes
-
-//app.use('/api/products', require('./routes/products').default); 
 
 import productsRouter from './routes/products.js';
 
@@ -45,16 +43,3 @@ server.listen(PORT, async () => {
   console.log(`Server is running on port ${PORT}`);
  await connectToMongoDB();
 }); 
-
-/*
-connectToMongoDB()
-    .then(() => {
-        app.listen(PORT, () => {
-            console.log(`Server is running on port ${PORT}`);
-        });
-    })
-    .catch((error) => {
-        console.error('Failed to connect to MongoDB:', error);
-        process.exit(1); // Exit the process with failure status
-    });
-    */
