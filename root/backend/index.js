@@ -7,7 +7,7 @@ import express, { urlencoded as _urlencoded, json as _json } from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import {connectToMongoDB} from './database/config.js';
-
+import bodyParser from 'body-parser';
 
 
 // Creacion del server de express
@@ -23,12 +23,14 @@ const server = createServer(app) //Crear server
 
 app.use(cors());
 app.use(morgan('dev'));
+/*
 app.use(_urlencoded({extended:false})); // ver si esto es compatible o no
 app.use(_json());
+*/
 
 // Esto es para los limites de tomaño de las imagenes enviadas al backend (TODAVIA NO FUNCIONA)
-app.use(_json({ limit: '50mb' }));
-app.use(_urlencoded({ limit: '50mb', extended: true }));
+
+app.use(bodyParser.json({ limit: '10mb'}));
 
 // Routes
 

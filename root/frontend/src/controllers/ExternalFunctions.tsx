@@ -1,1 +1,0 @@
-/* En esta seccion se encontraran las funciones que involucran a la pagina web y la inteligencia artificial */ 
