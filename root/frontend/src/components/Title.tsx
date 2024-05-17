@@ -1,6 +1,4 @@
-import React from 'react'
-
-const Header = () => {
+const Title = () => {
   return (
     <div>
 <div className='w-full h-20 bg-blue-gray-500 flex items-center text-left text-xl'>
@@ -13,5 +11,5 @@ const Header = () => {
   )
 }
 
-export default Header
+export default Title
 

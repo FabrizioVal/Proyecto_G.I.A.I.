@@ -1,15 +1,19 @@
-import { useState, useEffect } from 'react';
-import ProductContainer from './ProductContainer';
+// Inventory.tsx
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import ProductContainer from './ProductContainer';
 
-const Inventory = () => {
-  const [products, setProducts] = useState([]);
+interface InventoryProps {
+  searchQuery: string;
+}
+
+const Inventory: React.FC<InventoryProps> = ({ searchQuery }) => {
+  const [products, setProducts] = useState<any[]>([]);
 
   useEffect(() => {
     // Fetch product data from backend API
     axios.get('http://localhost:3000/api/products/inventario')
       .then(response => {
-        // Access the data property of the AxiosResponse object
         setProducts(response.data);
       })
       .catch(error => {
@@ -17,13 +21,16 @@ const Inventory = () => {
       });
   }, []);
 
-  
+  const filteredProducts = products.filter(product =>
+    product.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className="flex flex-wrap justify-center mt-10">
-      {products.map(product => (
+      {filteredProducts.map(product => (
         <ProductContainer
-          imageUrl={product.imageUrl} // Assuming product.imageUrl contains the image URL
+          key={product.id}
+          imageUrl={product.imageUrl}
           name={product.name}
           price={product.price}
           quantity={product.quantity}
@@ -31,6 +38,6 @@ const Inventory = () => {
       ))}
     </div>
   );
-}
+};
 
 export default Inventory;

@@ -40,3 +40,7 @@ import { minQuantity } from '../controllers/minQuantity.js';
 router.get('/minQuantity', minQuantity);
 
 /* Funcion para buscar productos por su nombre */
+
+import { searchbar } from '../controllers/searchbar.js';
+
+router.get('/search', searchbar);

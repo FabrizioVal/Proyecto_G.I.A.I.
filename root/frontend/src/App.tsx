@@ -1,24 +1,16 @@
 import './App.css'
-import Header from './components/Header'
-import SaveLocalBtn from './components/ButtonBar'
-import Inventory from './components/Inventory'
+import Title from './components/Title'
+import Inventory from './controllers/Searchbar'
 
 function App() {
-  
 
   return (
-    <main>
-
-    <Header/>
-
-    <div>
-    <SaveLocalBtn/>
-
-    </div>
-
-    <Inventory/>
-    </main> 
-  )
+    <main>       
+      <Title />
+      
+      <Inventory/>
+    </main>
+  );
 }
 
-export default App
+export default App;
