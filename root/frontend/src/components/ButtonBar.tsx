@@ -11,12 +11,20 @@ import { Button,
 import { FaSearch } from "react-icons/fa";
 import { IoIosArrowUp } from "react-icons/io";
 import { sendProduct } from '../controllers/LocalProduct';
+import {
+  handleQuantityAsc,
+  handleQuantityDesc,
+  handlePriceAsc,
+  handlePriceDesc,
+} from '../controllers/Tags';
+import { Product } from '../../../backend/models/product.ts'; // modelo de producto
 
 interface HeaderProps {
   setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
+  handleSort: (sortFunc: (products: Product[]) => Product[]) => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ setSearchQuery }) => {
+const Header: React.FC<HeaderProps> = ({ setSearchQuery, handleSort }) => {
   const { dialog, setOpen } = sendProduct();
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -76,8 +84,8 @@ const Header: React.FC<HeaderProps> = ({ setSearchQuery }) => {
             </MenuItem>
           </MenuHandler>
           <MenuList>
-            <MenuItem>Mayor a menor</MenuItem>
-            <MenuItem>Menor a mayor</MenuItem>
+            <MenuItem onClick={() =>  handleSort(handleQuantityDesc)}>Mayor a menor</MenuItem>
+            <MenuItem onClick={() => handleSort(handleQuantityAsc)}>Menor a mayor</MenuItem>
           </MenuList>
         </Menu>
 
@@ -100,8 +108,8 @@ const Header: React.FC<HeaderProps> = ({ setSearchQuery }) => {
             </MenuItem>
           </MenuHandler>
           <MenuList>
-            <MenuItem>Mayor a menor</MenuItem>
-            <MenuItem>Menor a mayor</MenuItem>
+          <MenuItem onClick={() => handleSort(handlePriceDesc)}>Mayor a menor</MenuItem>
+            <MenuItem onClick={() => handleSort(handlePriceAsc)}>Menor a mayor</MenuItem>
           </MenuList>
         </Menu>
 
