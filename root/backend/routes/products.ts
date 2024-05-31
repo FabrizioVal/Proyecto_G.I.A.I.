@@ -15,32 +15,6 @@ import { getAllProducts } from '../controllers/displayAllProducts.ts';
 
 router.get('/inventario', getAllProducts);
 
-/* Funcion para ordenar productos de precio menor a mayor */
+import { editProduct } from '../controllers/editProduct.ts'; 
 
-import { minPrice } from '../controllers/minPrice.ts';
-
-router.get('/minPrice' , minPrice);
-
-/* Funcion para ordenar productos de precio mayor a menor */
-
-import { maxPrice } from '../controllers/maxPrice.ts';
-
-router.get('/maxPrice', maxPrice);
-
-/* Funcion para ordenar productos de cantidad mayor a menor */
-
-import { maxQuantity } from '../controllers/maxQuantity.ts';
-
-router.get('/maxQuantity', maxQuantity);
-
-/* Funcion para ordenar productos de cantidad menor a mayor */
-
-import { minQuantity } from '../controllers/minQuantity.ts';
-
-router.get('/minQuantity', minQuantity);
-
-/* Funcion para buscar productos por su nombre */
-
-import { searchbar } from '../controllers/searchbar.ts';
-
-router.get('/search', searchbar);
+router.put('/editarProducto/:id', editProduct);
