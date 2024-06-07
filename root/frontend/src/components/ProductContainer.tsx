@@ -4,16 +4,38 @@ import {
   CardFooter,
   CardHeader,
 } from "@material-tailwind/react";
-import { BsThreeDots } from 'react-icons/bs';
+import { BsThreeDots, BsTrash } from 'react-icons/bs';
 import { editProduct } from '../controllers/EditProduct.tsx';
+import { deleteProduct } from '../controllers/EraseProduct.tsx'; // import the deleteProduct function
 
-const ProductContainer = ({ id, imageUrl, name, price, quantity }) => {
-  const { dialog, setOpen, setProductData } = editProduct(); // Usar el hook para editar producto
-  
+const ProductContainer = ({  _id, imageUrl, name, price, quantity }) => {
+  const { dialog: editDialog, setOpen: setEditOpen, setProductData } = editProduct(); // Use the hook to edit product
+  const { dialog: deleteDialog, openDeleteDialog } = deleteProduct(); // Use the hook to delete product
 
-  const handleEditClick = () => {
-    setProductData({ id, name, price, quantity, imageUrl }); // Setear los datos del producto a editar
-    setOpen(true);
+  console.log("ProductContainer Props:", { _id, imageUrl, name, price, quantity });
+
+  const handleEditClick = (_id) => {
+    setProductData({
+      _id,
+      productName: name,
+      productPrice: price,
+      productQuantity: quantity,
+      file: imageUrl,
+    });
+
+    console.log("Product data after setting:", {
+      productName: name,
+      productPrice: price,
+      productQuantity: quantity,
+      file: imageUrl,
+    });
+
+    setEditOpen(true);
+    console.log("Dialog should open");
+  };
+
+  const handleDeleteClick = (_id) => {
+    openDeleteDialog(_id); // Open the delete dialog and set the product ID
   };
 
   return (
@@ -22,8 +44,9 @@ const ProductContainer = ({ id, imageUrl, name, price, quantity }) => {
         <CardHeader>
           <div className="relative justify-center flex w-full h-full">
             <img src={imageUrl} alt={name} />
-            <div className="absolute top-0 right-0 p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <BsThreeDots className="text-gray-700 size-8" onClick={handleEditClick} />
+            <div className="absolute top-0 right-0 p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex space-x-2">
+              <BsThreeDots className="text-gray-700 size-8" onClick={() => handleEditClick(_id)} />
+              <BsTrash className="text-gray-700 size-8" onClick={() => handleDeleteClick(_id)} />
             </div>
           </div>
         </CardHeader>
@@ -37,7 +60,8 @@ const ProductContainer = ({ id, imageUrl, name, price, quantity }) => {
           </div>
         </CardFooter>
       </Card>
-      {dialog}
+      {editDialog}
+      {deleteDialog}
     </div>
   );
 };

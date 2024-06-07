@@ -14,7 +14,7 @@ import axios from 'axios';
 export const editProduct = () => {
   const [open, setOpen] = useState(false);
   const [productData, setProductData] = useState({
-    id: '',
+    _id: '',
     productName: '',
     productPrice: '',
     productQuantity: '',
@@ -53,13 +53,14 @@ export const editProduct = () => {
       const base64Image = await convertToBase64(productData.file);
 
       const requestData = {
+        _id: productData._id,
         productName: productData.productName,
         productPrice: productData.productPrice,
         productQuantity: productData.productQuantity,
         file: base64Image,
       };
 
-      const response = await axios.put(`http://localhost:3000/api/products/editarProducto/${productData.id}`, requestData);
+      const response = await axios.put(`http://localhost:3000/api/products/editarProducto/${productData._id}`, requestData);
       console.log(response.data);
       alert('Producto actualizado correctamente!');
     } catch (error) {
@@ -93,7 +94,9 @@ export const editProduct = () => {
             Editar imagen
           </Typography>
           <input className="mb-2 mt-6 absolute bottom-0 justify-center items-center" type="file" onChange={handleChange} accept='.jpeg, .png, .jpg' />
-          {productData.file && <img src={URL.createObjectURL(productData.file)} className='block mx-auto my-auto mb-4' alt="Imagen a subir" style={{ width: '200px', height: '200px' }} />}
+          {productData.file && typeof productData.file !== 'string' && (
+            <img src={URL.createObjectURL(productData.file)} className='block mx-auto my-auto mb-4' alt="Imagen a subir" style={{ width: '200px', height: '200px' }} />
+          )}
         </div>
 
         <div className="w-1/2 grid gap-7 justify-center items-center mt-16">
@@ -103,7 +106,7 @@ export const editProduct = () => {
           <Input style={{ width: '300px' }} label="Nombre" value={productData.productName} onChange={(e) => setProductData(prevData => ({ ...prevData, productName: e.target.value }))} />
           <Input style={{ width: '300px' }} label="Precio" value={productData.productPrice} onChange={(e) => setProductData(prevData => ({ ...prevData, productPrice: e.target.value }))} />
           <Input style={{ width: '300px' }} label="Cantidad" value={productData.productQuantity} onChange={(e) => setProductData(prevData => ({ ...prevData, productQuantity: e.target.value }))} />
-          <Typography className="text-red-500">{errorMessage}.</Typography>
+          <Typography className="text-red-500">{errorMessage}</Typography>
         </div>
       </DialogBody>
 

@@ -52,7 +52,8 @@ const sortedProducts = sortFunction ? sortFunction(filteredProducts) : filteredP
     <div className="flex flex-wrap justify-center mt-10">
       {sortedProducts.map(product => (
         <ProductContainer
-          key={product.id}
+          key={product._id}
+          _id={product._id}
           imageUrl={product.imageUrl}
           name={product.name}
           price={product.price}

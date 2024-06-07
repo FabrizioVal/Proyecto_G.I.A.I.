@@ -18,3 +18,7 @@ router.get('/inventario', getAllProducts);
 import { editProduct } from '../controllers/editProduct.ts'; 
 
 router.put('/editarProducto/:id', editProduct);
+
+import { deleteProduct } from '../controllers/eraseProduct.ts'; 
+
+router.delete('/eliminarProducto/:id', deleteProduct);

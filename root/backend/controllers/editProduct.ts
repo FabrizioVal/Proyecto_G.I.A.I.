@@ -2,8 +2,7 @@ import Product from '../models/product.ts';
 import { db } from '../database/config.js';
 
 export const editProduct = async (req, res) => {
-    const { id } = req.params;
-    const { productName, productPrice, productQuantity, file } = req.body;
+    const { productName, productPrice, productQuantity, file, _id } = req.body;
   
     try {
         if (!db) {
@@ -11,7 +10,7 @@ export const editProduct = async (req, res) => {
           }
 
       const updatedProduct = await Product.findByIdAndUpdate(
-        id,
+        _id,
         {
           name: productName,
           price: productPrice,
@@ -21,7 +20,7 @@ export const editProduct = async (req, res) => {
         { new: true }
       );
   
-console.log(productName, productPrice, productQuantity);
+console.log(productName, productPrice, productQuantity, _id);
 
       if (!updatedProduct) {
         return res.status(404).json({ message: 'Producto no encontrado' });
