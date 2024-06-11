@@ -4,11 +4,12 @@ import {
   CardFooter,
   CardHeader,
 } from "@material-tailwind/react";
-import { BsThreeDots, BsTrash } from 'react-icons/bs';
+import { AiTwotoneEdit } from "react-icons/ai";
+import { BsTrash } from 'react-icons/bs';
 import { editProduct } from '../controllers/EditProduct.tsx';
 import { deleteProduct } from '../controllers/EraseProduct.tsx'; // import the deleteProduct function
 
-const ProductContainer = ({  _id, imageUrl, name, price, quantity }) => {
+const ProductContainer = ({ _id, imageUrl, name, price, quantity }) => {
   const { dialog: editDialog, setOpen: setEditOpen, setProductData } = editProduct(); // Use the hook to edit product
   const { dialog: deleteDialog, openDeleteDialog } = deleteProduct(); // Use the hook to delete product
 
@@ -43,10 +44,10 @@ const ProductContainer = ({  _id, imageUrl, name, price, quantity }) => {
       <Card className="bg-gray-300">
         <CardHeader>
           <div className="relative justify-center flex w-full h-full">
-            <img src={imageUrl} alt={name} />
+            <img src={imageUrl} alt={name} className="group-hover:opacity-50 transition-opacity duration-300" />
             <div className="absolute top-0 right-0 p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex space-x-2">
-              <BsThreeDots className="text-gray-700 size-8" onClick={() => handleEditClick(_id)} />
-              <BsTrash className="text-gray-700 size-8" onClick={() => handleDeleteClick(_id)} />
+              <AiTwotoneEdit className="text-black size-8 hover:text-deep-orange-900" onClick={() => handleEditClick(_id)} />
+              <BsTrash className="text-black size-8 hover:text-deep-orange-900" onClick={() => handleDeleteClick(_id)} />
             </div>
           </div>
         </CardHeader>

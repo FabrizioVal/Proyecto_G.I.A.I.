@@ -1,4 +1,3 @@
-// EditProduct.tsx
 import React, { useState } from 'react';
 import {
   Dialog,
@@ -79,16 +78,19 @@ export const editProduct = () => {
   }
 
   const dialog = (
-    <Dialog open={open} size="xl" handler={() => setOpen(false)}>
-      <div className="flex items-center justify-between">
-        <DialogHeader className="flex flex-col items-start">
-          <Typography className="mb-1" variant="h4">
-            Editar Producto
-          </Typography>
-        </DialogHeader>
+    <Dialog className='border-black border-2 ' open={open} size="xl" handler={() => setOpen(false)}>
+      <div className="rounded-t-md flex flex-col items-start bg-[#CD893A] border-black w-full">
+        <div className="flex items-center justify-between w-full">
+          <DialogHeader className="flex flex-col items-start w-full">
+            <Typography className="mb-1 text-black" variant="h4">
+              Editar Producto
+            </Typography>
+          </DialogHeader>
+        </div>
+        <div className="w-full border-b-4 border-[#8F5816]"></div> {/* Added div for outside bottom border */}
       </div>
 
-      <DialogBody className="flex justify-center items-center" style={{ height: '320px' }}>
+      <DialogBody className="flex justify-center items-center mt-6" style={{ height: '320px' }}>
         <div className="w-1/2 grid gap-2">
           <Typography className="mb-1 absolute top-0" variant="h4">
             Editar imagen
@@ -100,7 +102,7 @@ export const editProduct = () => {
         </div>
 
         <div className="w-1/2 grid gap-7 justify-center items-center mt-16">
-          <Typography className="mb-1 top-0 absolute" variant="h4">
+          <Typography className="mb-1 ml-2 top-0 absolute" variant="h4">
             Editar características
           </Typography>
           <Input style={{ width: '300px' }} label="Nombre" value={productData.productName} onChange={(e) => setProductData(prevData => ({ ...prevData, productName: e.target.value }))} />
@@ -111,10 +113,11 @@ export const editProduct = () => {
       </DialogBody>
 
       <DialogFooter className="space-x-2">
-        <Button variant="text" color="gray" onClick={() => setOpen(false)}>
+         <div className="w-full mb-4 border-t-2 border-gray-400"></div>
+        <Button variant="text" className="border-black border-2" color="gray" onClick={() => setOpen(false)}>
           Cancelar
         </Button>
-        <Button variant="gradient" color="gray" onClick={updateProduct}>
+        <Button variant="gradient" color="black" className=" border-[#383838] border-2" onClick={updateProduct}>
           Actualizar producto
         </Button>
       </DialogFooter>
