@@ -7,6 +7,7 @@ import {
   Input,
   Typography,
   Button,
+  Alert,
 } from "@material-tailwind/react";
 import axios from 'axios';
 
@@ -23,7 +24,7 @@ export const editProduct = () => {
 
   const MAX_FILE_SIZE = 2 * 1024 * 1024; // 2 MB in bytes
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const selectedFile = e.target.files[0];
     if (selectedFile && selectedFile.size <= MAX_FILE_SIZE) {
       setProductData(prevData => ({ ...prevData, file: selectedFile }));
@@ -64,11 +65,11 @@ export const editProduct = () => {
       alert('Producto actualizado correctamente!');
     } catch (error) {
       console.error('Error:', error);
-      alert(`Error al actualizar el producto: ${error.message}`);
+      alert(`Error al actualizar el producto: ${error?.message}`);
     }
   };
 
-  function convertToBase64(file) {
+  function convertToBase64(file: any) {
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader();
       fileReader.readAsDataURL(file);
@@ -87,7 +88,7 @@ export const editProduct = () => {
             </Typography>
           </DialogHeader>
         </div>
-        <div className="w-full border-b-4 border-[#8F5816]"></div> {/* Added div for outside bottom border */}
+        <div className="w-full border-b-4 border-[#8F5816]"></div> 
       </div>
 
       <DialogBody className="flex justify-center items-center mt-6" style={{ height: '320px' }}>

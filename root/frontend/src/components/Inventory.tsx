@@ -49,7 +49,7 @@ console.log(products)
 const sortedProducts = sortFunction ? sortFunction(filteredProducts) : filteredProducts;
 
   return (
-    <div className="flex flex-wrap justify-center mt-10">
+    <div className="flex flex-wrap justify-center mt-10 mb-10">
       {sortedProducts.map(product => (
         <ProductContainer
           key={product._id}

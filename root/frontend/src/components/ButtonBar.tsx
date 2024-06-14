@@ -43,11 +43,10 @@ const Header: React.FC<HeaderProps> = ({ setSearchQuery, handleSort }) => {
       <div className="flex justify-start ml-10 space-x-2">
         <div className="relative flex w-full max-w-[20rem] ">
           <Input
-            color="black"
             type="text"
             label="Buscar un producto"
             onChange={handleInputChange}
-            className="pr-20 "
+            className="pr-20 border-black border-2"
             containerProps={{ className: "min-w-0" }}
           />
           
