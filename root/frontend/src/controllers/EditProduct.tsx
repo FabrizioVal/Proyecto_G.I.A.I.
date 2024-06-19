@@ -1,3 +1,4 @@
+// EditProduct.tsx
 import React, { useState } from 'react';
 import {
   Dialog,
@@ -7,30 +8,37 @@ import {
   Input,
   Typography,
   Button,
-  Alert,
 } from "@material-tailwind/react";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 
-export const editProduct = () => {
-  const [open, setOpen] = useState(false);
+interface EditProductProps {
+  product: Product;
+  onProductUpdate: (updatedProduct: Product) => void;
+  open: boolean;
+  onClose: () => void;
+}
+
+const EditProduct: React.FC<EditProductProps> = ({ product, onProductUpdate, open, onClose }) => {
   const [productData, setProductData] = useState({
-    _id: '',
-    productName: '',
-    productPrice: '',
-    productQuantity: '',
-    file: '',
+    _id: product._id,
+    productName: product.name,
+    productPrice: product.price.toString(),
+    productQuantity: product.quantity.toString(),
+    file: '' as any, // Adjust the type to fit your requirements
   });
   const [errorMessage, setErrorMessage] = useState('');
 
   const MAX_FILE_SIZE = 2 * 1024 * 1024; // 2 MB in bytes
 
-  const handleChange = (e: any) => {
-    const selectedFile = e.target.files[0];
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files?.[0];
     if (selectedFile && selectedFile.size <= MAX_FILE_SIZE) {
       setProductData(prevData => ({ ...prevData, file: selectedFile }));
     } else {
-      alert('Selected file exceeds the maximum size limit of 2 MB.');
-      e.target.value = null;
+      toast.info('El archivo elegido excede los 2 megabytes de tamaño');
+      e.target.value = '';
     }
   };
 
@@ -55,31 +63,38 @@ export const editProduct = () => {
       const requestData = {
         _id: productData._id,
         productName: productData.productName,
-        productPrice: productData.productPrice,
-        productQuantity: productData.productQuantity,
+        productPrice: parseFloat(productData.productPrice),
+        productQuantity: parseInt(productData.productQuantity),
         file: base64Image,
       };
 
       const response = await axios.put(`http://localhost:3000/api/products/editarProducto/${productData._id}`, requestData);
       console.log(response.data);
-      alert('Producto actualizado correctamente!');
+      toast.success('¡Producto editado exitosamente!', {
+        theme: "dark",
+        });
+      onProductUpdate(response.data);
+      onClose();
     } catch (error) {
       console.error('Error:', error);
-      alert(`Error al actualizar el producto: ${error?.message}`);
+      toast.error('Error al actualizar el producto', {
+        theme: "dark",
+        });
+      console.log(`Error al actualizar el producto: ${error?.message}`);
     }
   };
 
-  function convertToBase64(file: any) {
+  function convertToBase64(file: File): Promise<string> {
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader();
       fileReader.readAsDataURL(file);
-      fileReader.onload = () => resolve(fileReader.result);
+      fileReader.onload = () => resolve(fileReader.result as string);
       fileReader.onerror = error => reject(error);
     });
   }
 
-  const dialog = (
-    <Dialog className='border-black border-2 ' open={open} size="xl" handler={() => setOpen(false)}>
+  return (
+    <Dialog className='border-black border-2' open={open} size="xl" handler={onClose}>
       <div className="rounded-t-md flex flex-col items-start bg-[#CD893A] border-black w-full">
         <div className="flex items-center justify-between w-full">
           <DialogHeader className="flex flex-col items-start w-full">
@@ -114,8 +129,8 @@ export const editProduct = () => {
       </DialogBody>
 
       <DialogFooter className="space-x-2">
-         <div className="w-full mb-4 border-t-2 border-gray-400"></div>
-        <Button variant="text" className="border-black border-2" color="gray" onClick={() => setOpen(false)}>
+        <div className="w-full mb-4 border-t-2 border-gray-400"></div>
+        <Button variant="text" className="border-black border-2" color="gray" onClick={onClose}>
           Cancelar
         </Button>
         <Button variant="gradient" color="black" className=" border-[#383838] border-2" onClick={updateProduct}>
@@ -124,6 +139,6 @@ export const editProduct = () => {
       </DialogFooter>
     </Dialog>
   );
-
-  return { dialog, setOpen, setProductData };
 };
+
+export default EditProduct;

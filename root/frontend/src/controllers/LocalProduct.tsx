@@ -12,7 +12,7 @@ import {
 } from "@material-tailwind/react";
 import axios from 'axios';
 
-export const sendProduct = () => {
+export const AddProduct = () => {
   const [open, setOpen] = useState(false);
   const [productName, setProductName] = useState('');
   const [productPrice, setProductPrice] = useState('');

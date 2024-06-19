@@ -10,7 +10,7 @@ import { Button,
   Input, } from "@material-tailwind/react";
 import { FaSearch } from "react-icons/fa";
 import { IoIosArrowUp } from "react-icons/io";
-import { sendProduct } from '../controllers/LocalProduct';
+import { AddProduct } from '../controllers/LocalProduct';
 import {
   handleQuantityAsc,
   handleQuantityDesc,
@@ -25,7 +25,7 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ setSearchQuery, handleSort }) => {
-  const { dialog, setOpen } = sendProduct();
+  const { dialog, setOpen } = AddProduct();
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
