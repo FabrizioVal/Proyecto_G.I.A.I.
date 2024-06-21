@@ -1,11 +1,12 @@
 // Inventory.tsx
 // Inventory.tsx
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import ProductContainer from './ProductContainer'; // estructura frotend del schema
-import { Product } from '../../../backend/models/product.ts'; // modelo de producto
-import EditProduct from '../controllers/EditProduct.tsx';
-
+import ProductContainer from './ProductContainer';
+import { Product } from '../../../backend/models/product.ts';
+import EditProduct from '../controllers/EditProduct';
+import AddProduct from '../controllers/LocalProduct';
 
 interface InventoryProps {
   searchQuery: string;
@@ -16,19 +17,20 @@ const Inventory: React.FC<InventoryProps> = ({ searchQuery, sortFunction }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [editDialogOpen, setEditDialogOpen] = useState(false);
+  const [addDialogOpen, setAddDialogOpen] = useState(false); // State for add product dialog
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get('http://localhost:3000/api/products/inventario');
-        setProducts(response.data);
-      } catch (error) {
-        console.error('Error fetching product data:', error);
-      }
-    };
-
-    fetchProducts();
+    fetchProducts(); // Fetch products on component mount
   }, []);
+
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/api/products/inventario');
+      setProducts(response.data);
+    } catch (error) {
+      console.error('Error fetching product data:', error);
+    }
+  };
 
   const handleProductUpdate = (updatedProduct: Product) => {
     setProducts((prevProducts) =>
@@ -42,6 +44,27 @@ const Inventory: React.FC<InventoryProps> = ({ searchQuery, sortFunction }) => {
     setSelectedProduct(product);
     setEditDialogOpen(true);
   };
+
+  const handleAddProduct = () => {
+    setAddDialogOpen(true); // Open the add product dialog
+  };
+
+  const handleProductAdd = () => {
+    setAddDialogOpen(false); // Close the add product dialog
+    fetchProducts(); // Refresh inventory after adding a product
+  };
+
+  const handleDeleteProduct = async (productId: string) => {
+    try {
+      await axios.delete(`http://localhost:3000/api/products/eliminarProducto/${productId}`);
+      setProducts((prevProducts) =>
+        prevProducts.filter((product) => product._id !== productId)
+      );
+    } catch (error) {
+      console.error('Error deleting product:', error);
+    }
+  };
+  
 
   const filteredProducts = products.filter(product =>
     product.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -60,9 +83,17 @@ const Inventory: React.FC<InventoryProps> = ({ searchQuery, sortFunction }) => {
             price={product.price}
             quantity={product.quantity}
             onEditClick={() => handleEditClick(product)}
+            onDeleteClick={() => handleDeleteProduct(product._id)}
           />
         </div>
       ))}
+
+      <AddProduct
+        open={addDialogOpen}
+        onClose={() => setAddDialogOpen(false)}
+        onProductAdd={handleProductAdd}
+      />
+
       {selectedProduct && (
         <EditProduct
           product={selectedProduct}

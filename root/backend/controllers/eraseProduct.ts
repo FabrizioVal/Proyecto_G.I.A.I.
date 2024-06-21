@@ -2,7 +2,8 @@ import Product from '../models/product.ts';
 import { db } from '../database/config.js';
 
 export const deleteProduct = async (req, res) => {
-  const { _id } = req.body;
+  //const { _id } = req.body;
+  const { id: _id } = req.params;
 
   try {
     if (!db) {
