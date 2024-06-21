@@ -1,5 +1,4 @@
 // AddProduct.tsx
-
 import React, { useState } from 'react';
 import {
   Dialog,
@@ -32,9 +31,10 @@ export const AddProduct: React.FC<AddProductProps> = ({ open, onClose, onProduct
     const selectedFile = e.target.files?.[0];
     if (selectedFile && selectedFile.size <= MAX_FILE_SIZE) {
       setFile(selectedFile);
+      setErrorMessage('');
     } else {
       // Handle file size exceeds limit
-      alert('Selected file exceeds the maximum size limit of 2 MB.');
+      setErrorMessage('El archivo seleccionado supera los 2 Megabytes.');
       // Clear the file input
       e.target.value = '';
     }
@@ -68,7 +68,7 @@ export const AddProduct: React.FC<AddProductProps> = ({ open, onClose, onProduct
       console.log(response.data);
 
       onClose(); // Close the dialog
-      toast.success('¡Producto editado exitosamente! Refrescando...', {
+      toast.success('¡Producto añadido exitosamente! Refrescando...', {
         theme: "dark",
         });
         setTimeout(() => {
@@ -94,16 +94,19 @@ export const AddProduct: React.FC<AddProductProps> = ({ open, onClose, onProduct
   }
 
   return (
-    <Dialog open={open} size="xl" handler={onClose}>
-      <div className="flex items-center justify-between">
-        <DialogHeader className="flex flex-col items-start">
-          <Typography className="mb-1" variant="h4">
+    <Dialog className='border-black border-2' open={open} size="xl" handler={onClose}>
+      <div className="rounded-t-md flex flex-col items-start bg-[#CD893A] border-black w-full">
+        <div className="flex items-center justify-between w-full">
+          <DialogHeader className="flex flex-col items-start w-full">
+            <Typography className="mb-1 text-black" variant="h4">
             Ingrese los datos del nuevo producto
-          </Typography>
-        </DialogHeader>
+            </Typography>
+          </DialogHeader>
+        </div>
+        <div className="w-full border-b-4 border-[#8F5816]"></div> 
       </div>
 
-      <DialogBody className="flex justify-center items-center" style={{ height: '320px' }}>
+      <DialogBody className="flex justify-center items-center mt-6" style={{ height: '320px' }}>
         <div className="w-1/2 grid gap-2">
           <Typography className="mb-1 absolute top-0" variant="h4">
             Añadir imagen
@@ -124,15 +127,16 @@ export const AddProduct: React.FC<AddProductProps> = ({ open, onClose, onProduct
           <Input style={{ width: '300px' }} label="Nombre" value={productName} onChange={(e) => setProductName(e.target.value)} />
           <Input style={{ width: '300px' }} label="Precio" value={productPrice} onChange={(e) => setProductPrice(e.target.value)} />
           <Input style={{ width: '300px' }} label="Cantidad" value={productQuantity} onChange={(e) => setProductQuantity(e.target.value)} />
-          <Typography className="text-red-500">{errorMessage}.</Typography>
+          <Typography className="text-red-500">{errorMessage}</Typography>
         </div>
       </DialogBody>
 
       <DialogFooter className="space-x-2">
-        <Button variant="text" color="gray" onClick={onClose}>
+      <div className="w-full mb-4 border-t-2 border-gray-400"></div>
+        <Button variant="text" className='border-black border-2' color="gray" onClick={onClose}>
           Cancelar
         </Button>
-        <Button variant="gradient" color="gray" onClick={sendProduct}>
+        <Button variant="gradient" color="black" onClick={sendProduct}>
           Añadir producto
         </Button>
       </DialogFooter>

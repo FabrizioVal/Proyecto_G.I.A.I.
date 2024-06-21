@@ -37,8 +37,10 @@ const EditProduct: React.FC<EditProductProps> = ({ product, onProductUpdate, ope
     if (selectedFile && selectedFile.size <= MAX_FILE_SIZE) {
       setProductData(prevData => ({ ...prevData, file: selectedFile }));
     } else {
-      toast.info('El archivo elegido excede los 2 megabytes de tamaño');
+      setErrorMessage('2 Megabytes limite superados.');
+      // Clear the file input
       e.target.value = '';
+     
     }
   };
 
@@ -118,7 +120,7 @@ const EditProduct: React.FC<EditProductProps> = ({ product, onProductUpdate, ope
         </div>
 
         <div className="w-1/2 grid gap-7 justify-center items-center mt-16">
-          <Typography className="mb-1 ml-2 top-0 absolute" variant="h4">
+          <Typography className="mb-1 top-0 absolute" variant="h4">
             Editar características
           </Typography>
           <Input style={{ width: '300px' }} label="Nombre" value={productData.productName} onChange={(e) => setProductData(prevData => ({ ...prevData, productName: e.target.value }))} />

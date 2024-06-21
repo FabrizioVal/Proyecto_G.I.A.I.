@@ -33,10 +33,10 @@ const ProductContainer: React.FC<ProductContainerProps> = ({ _id, imageUrl, name
           </div>
         </CardHeader>
         <CardFooter>
-          <div className="-mb-2 -mt-4 text-black">
-            <p style={{ fontSize: '30px' }} className="mr-4">{name}</p>
-            <p style={{ fontSize: '20px' }} className="mr-4 mt-2">${price}</p>
-            <p style={{ fontSize: '20px' }} className="mr-4 mt-2">Quantity: {quantity}</p>
+          <div className="text-black space-y-2">
+            <p className="text-2xl break-words">{name}</p>
+            <p className="text-lg">${price}</p>
+            <p className="text-lg">Quantity: {quantity}</p>
           </div>
         </CardFooter>
       </Card>
