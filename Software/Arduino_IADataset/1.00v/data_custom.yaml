@@ -1,0 +1,5 @@
+train: C:\Users\tomas\Escritorio\CARP-Terminados\GAIA\Dataset\val\images
+val: C:\Users\tomas\Escritorio\CARP-Terminados\GAIA\Dataset\val\images
+nc: 3
+
+names: ['Sprite Zero','Manon','Terrabusi Variedad']
