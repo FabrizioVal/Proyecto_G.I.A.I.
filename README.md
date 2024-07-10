@@ -135,4 +135,14 @@ acomodar esto bien (me faltan 2)
 
 [Licencia MIT](https://github.com/FabrizioVal/Proyecto_G.I.A.I./blob/main/LICENSE)
 
-[🔼 Volver al inicio](#user-content-introducción)
+<br>
+
+<br>
+
+---
+
+<div align="center">
+  <a href="#user-content-introducción">🔼 Volver al inicio</a>
+</div>
+
+
