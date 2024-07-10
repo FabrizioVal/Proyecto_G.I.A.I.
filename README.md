@@ -18,15 +18,15 @@ Como su nombre lo indica, este gestor es capaz de identificar fotos de productos
 
 ## 📒 Indice
 
-- [⚙️ Explicacion de areas](#explicación-de-areas)
+- [⚙️ Explicacion de areas](#ledger-explicación-de-areas)
 
-- [Desarrollo](#desarrollo)
+- [🔧 Desarrollo](#wrench-desarrollo)
 
-- [Galeria](#galeria)
+- [📸 Galeria](#camera_flash-galeria)
 
-- [🌟 Autores](#autores)
+- [🌟 Autores](#star2-autores)
 
-- [🔒 Licencia](#licencia)
+- [🔒 Licencia](#lock-licencia)
 
 ## ⚙️ Explicación de areas
 
