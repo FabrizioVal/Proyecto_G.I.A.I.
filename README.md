@@ -18,7 +18,7 @@ Como su nombre lo indica, este gestor es capaz de identificar fotos de productos
 
 ## 📒 Indice
 
-- [Explicacion de areas](https://github.com/FabrizioVal/Proyecto_G.I.A.I./tree/main?tab=readme-ov-file#explicaci%C3%B3n-de-areas)
+- [Explicacion](#explicación-de-areas)
 - 🔧 Desarrollo
 - 📸 Galeria
 - 🌟 Autores
