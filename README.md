@@ -34,7 +34,7 @@ Como su nombre lo indica, este gestor es capaz de identificar fotos de productos
 
 ![diagrama](https://github.com/FabrizioVal/Proyecto_G.I.A.I./blob/main/GithubImages/GIAI.drawio.png)
 
-El diagrama en bloques mostrado en la imagen funciona de la siguiente forma:
+El diagrama de bloques mostrado en la imagen funciona de la siguiente forma:
 
 ### Scan físico
 
@@ -98,7 +98,7 @@ Aquí se encuentran los archivos hechos en tinkercad. Se incluyen archivos de ba
 
 ### Software
 
-Aquí se encuentran dos carpetas de diferentes, estas son:
+Aquí se encuentran dos carpetas diferentes, estas son:
 
 <br>
 
