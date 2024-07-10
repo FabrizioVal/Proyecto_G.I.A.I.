@@ -28,7 +28,7 @@ Como su nombre lo indica, este gestor es capaz de identificar fotos de productos
 
 <br>
 
-imagen xd
+![diagrama](https://github.com/FabrizioVal/Proyecto_G.I.A.I./blob/main/GithubImages/GIAI.drawio.png)
 
 El diagrama en bloques mostrado en la imagen funciona de la siguiente forma:
 
@@ -65,6 +65,7 @@ La jerarquía de carpetas usadas es la siguiente:
 ```
 main
 .
+|- GithubImages
 |- Hardware
 |   |-- Kicad
 |       |--- Versiones
