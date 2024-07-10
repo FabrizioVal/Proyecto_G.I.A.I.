@@ -24,7 +24,7 @@ Como su nombre lo indica, este gestor es capaz de identificar fotos de productos
 
 - [📸 Galeria](#user-content--galeria)
 
-- [🌟 Autores](user-content--autores)
+- [🌟 Autores](#user-content--autores)
 
 - [🔒 Licencia](#user-content--licencia)
 
