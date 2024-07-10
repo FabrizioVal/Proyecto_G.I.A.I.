@@ -18,7 +18,7 @@ Como su nombre lo indica, este gestor es capaz de identificar fotos de productos
 
 ## 📒 Indice
 
-- [⚙️ Explicacion de areas](#ledger-explicación-de-areas)
+- [⚙️ Explicacion de areas](#user-content-️-explicación-de-areas)
 
 - [🔧 Desarrollo](#wrench-desarrollo)
 
