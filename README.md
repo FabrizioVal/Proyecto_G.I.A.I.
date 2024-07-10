@@ -18,7 +18,7 @@ Como su nombre lo indica, este gestor es capaz de identificar fotos de productos
 
 ## 📒 Indice
 
-- [⚙️Explicacion de areas](#explicación-de-areas)
+- [Explicacion de areas](#explicación-de-areas)
 
 - [🔧 Desarrollo](#desarrollo)
 
