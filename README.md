@@ -20,13 +20,13 @@ Como su nombre lo indica, este gestor es capaz de identificar fotos de productos
 
 - [⚙️ Explicacion de areas](#user-content-️-explicación-de-areas)
 
-- [🔧 Desarrollo](#wrench-desarrollo)
+- [🔧 Desarrollo](#user-content--desarrollo)
 
-- [📸 Galeria](#camera_flash-galeria)
+- [📸 Galeria](#user-content--galeria)
 
-- [🌟 Autores](#star2-autores)
+- [🌟 Autores](user-content--autores)
 
-- [🔒 Licencia](#lock-licencia)
+- [🔒 Licencia](#user-content--licencia)
 
 ## ⚙️ Explicación de areas
 
