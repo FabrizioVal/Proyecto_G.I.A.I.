@@ -25,7 +25,7 @@ const ProductContainer: React.FC<ProductContainerProps> = ({ _id, imageUrl, name
       <Card className="bg-gray-300 border-2 border-black">
         <CardHeader>
           <div className="border-2 border-black relative justify-center flex w-full h-full rounded-xl">
-            <img src={imageUrl} alt={name} className="group-hover:opacity-50 transition-opacity duration-300 rounded-xl" style={{ width: '250px', height:'' }} />
+            <img src={"data:image/jpg;base64,"+imageUrl} alt={name} className="group-hover:opacity-50 transition-opacity duration-300 rounded-xl" style={{ width: '250px', height:'' }} />
             <div className="absolute top-0 right-0 p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex space-x-2">
               <AiTwotoneEdit className="text-black size-8 hover:text-deep-orange-900" onClick={onEditClick} />
               <BsTrash className="text-black size-8 hover:text-deep-orange-900" onClick={() => openDeleteDialog(_id)} />
