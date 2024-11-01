@@ -115,7 +115,10 @@ Aquí se encuentran dos carpetas diferentes, estas son:
 > Cada carpeta tiene una subcarpeta de versiones, para poder analizar el avance de cada sección.
 
 
-## 📸 Galeria
+## 📸 Galeria (En extension)
+
+<img src="./GithubImages/ImagenCinta.png"/>
+Test en donde verificamos el funcionamiento de las placas de comando y ESP32Cam. 
 
 ## 🌟 Autores
 
