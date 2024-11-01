@@ -121,13 +121,13 @@ Aquí se encuentran dos carpetas diferentes, estas son:
 
 acomodar esto bien (me faltan 2)
 
-[Altamirano Valentino]()
+[Altamirano Valentino](https://github.com/val675)
 
 [Avila Tomas](https://github.com/VMASPAD)
 
 [Campusano Federico](https://github.com/FedeCampu1)
 
-[Sebastian Galeotti]()
+[Sebastian Galeotti](https://github.com/Kickdart)
 
 [Vallone Fabrizio](https://github.com/FabrizioVal)
 
