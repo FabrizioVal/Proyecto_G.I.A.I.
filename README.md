@@ -22,11 +22,11 @@ Como su nombre lo indica, este gestor es capaz de identificar fotos de productos
 
 - [🔧 Desarrollo](#user-content--desarrollo)
 
-- [📸 Galeria](#user-content--galeria)
-
 - [🌟 Autores](#user-content--autores)
 
 - [🔒 Licencia](#user-content--licencia)
+
+- [🔗 Links externos](#user-content--links-externos)
 
 ## ⚙️ Explicación de areas
 
@@ -114,12 +114,6 @@ Aquí se encuentran dos carpetas diferentes, estas son:
 > [!NOTE] 
 > Cada carpeta tiene una subcarpeta de versiones, para poder analizar el avance de cada sección.
 
-
-## 📸 Galeria (En extension)
-
-<img src="./GithubImages/ImagenCinta.png"/>
-Test en donde verificamos el funcionamiento de las placas de comando y ESP32Cam. 
-
 ## 🌟 Autores
 
 acomodar esto bien (me faltan 2)
@@ -141,6 +135,12 @@ acomodar esto bien (me faltan 2)
 <br>
 
 <br>
+
+## 🔗 Links externos
+
+[Informe del proyecto](https://docs.google.com/document/d/1mTRYeyY_YsD2kjhfw3tEv7mwZntl2X6F49L_w81WZxs/edit?tab=t.0)
+
+[Pagina Web Blog del proyecto](https://fabrizioval.github.io/FabrizioVal.io/)
 
 ---
 
