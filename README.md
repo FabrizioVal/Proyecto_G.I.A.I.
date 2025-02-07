@@ -116,8 +116,6 @@ Aquí se encuentran dos carpetas diferentes, estas son:
 
 ## 🌟 Autores
 
-acomodar esto bien (me faltan 2)
-
 [Altamirano Valentino](https://github.com/val675)
 
 [Avila Tomas](https://github.com/VMASPAD)
